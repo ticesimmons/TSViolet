@@ -7,13 +7,13 @@ import java.io.IOException;
 
 /**
  * 
- * temporary class for testing the robot class, which mimics peripherals 
+ * utilities for preset feeler actions utilizing the java.awt.Robot class
  * 
  * 
  * @author SimmonsTice
  *
  */
-public class workingWithRobot {
+public class FeelerUtils {
 	
 	public static final int SLEEP_TIME = 10;
 	
@@ -21,8 +21,20 @@ public class workingWithRobot {
 		Thread.sleep(SLEEP_TIME);
 	}
 	
+	
+	
+	//  WORD PROCESSING METHODS
+	 
+	
 	//private static void revise(String )
 	
+	/**
+	 * 
+	 * backspaces a set number of times
+	 * 
+	 * @param numDel number of characters to backspace
+	 * @param rob Robot object to use
+	 */
 	private static void del(int numDel, Robot rob) {
 		for (int i = 0; i < numDel; i++) {
 			rob.keyPress(KeyEvent.VK_BACK_SPACE);
@@ -31,6 +43,13 @@ public class workingWithRobot {
 		rob.keyRelease(KeyEvent.VK_DELETE);
 	}
 	
+	/**
+	 * types out an input string one character at a time
+	 * 
+	 * @param word word to type
+	 * @param rob Robot object to use
+	 * @throws InterruptedException
+	 */
 	private static void spell(String word, Robot rob) throws InterruptedException {
 		
 		for (int i = 0; i < word.length(); i++) {
@@ -257,33 +276,34 @@ public class workingWithRobot {
 			
 			rob.keyRelease(KeyEvent.VK_SHIFT);
 		}
+		
+		// TODO: figure out the enter situation
 		rob.keyPress(KeyEvent.VK_ENTER);
 		rob.keyRelease(KeyEvent.VK_ENTER);
 	}
 	
-	    public static void main(String[] args) throws IOException, AWTException, InterruptedException {
-	    	Robot robot = new Robot();
-	        robot.setAutoDelay(SLEEP_TIME);
-	    	
-	    	String command = "notepad.exe";
-	        Runtime run = Runtime.getRuntime();
-	        // idk what the non-depreciated version of this is so i'm going with it i guess...
-	        run.exec(command);
-	        try {
-	            Thread.sleep(2000);
-	        }
-	        catch (InterruptedException e)
-	        {
-	            // TODO Auto-generated catch block
-	            e.printStackTrace();
-	        }
-	 	       	
-	        spell("AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz", robot);
-	        spell("Spa ae", robot);
-	        robot.setAutoDelay(150);
-	        robot.keyPress(KeyEvent.VK_ENTER);
-	        robot.keyRelease(KeyEvent.VK_ENTER);
-	        del(8, robot);
-	        spell("Space", robot);
-	    }
+//	    public static void main(String[] args) throws IOException, AWTException, InterruptedException {
+//	    	Robot robot = new Robot();
+//	        robot.setAutoDelay(SLEEP_TIME);
+//	    	
+//	    	String command = "notepad.exe";
+//	        Runtime run = Runtime.getRuntime();
+//	        // idk what the non-depreciated version of this is so i'm going with it i guess...
+//	        run.exec(command);
+//	        try {
+//	            Thread.sleep(2000);
+//	        }
+//	        catch (InterruptedException e)
+//	        {
+//	            e.printStackTrace();
+//	        }
+//	 	       	
+//	        spell("AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz", robot);
+//	        spell("Spa ae", robot);
+//	        robot.setAutoDelay(150);
+//	        robot.keyPress(KeyEvent.VK_ENTER);
+//	        robot.keyRelease(KeyEvent.VK_ENTER);
+//	        del(8, robot);
+//	        spell("Space", robot);
+//	    }
 	}
