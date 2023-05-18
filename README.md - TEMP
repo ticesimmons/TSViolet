@@ -3,8 +3,8 @@
 the main branch for temporary changes / testing
 
 current TODO:
-     refine utils(i.e. figure out mouse movements)
      figure out excel and dove topography
+     refine utils(i.e. figure out mouse movements)
      integrate changes into the feelers
      put referenced jars on github page?(idk if it's neccessary we'll see)
      switch to VSCode?(eclipse currently is being manually compared to the repo and I'm not sure how to use it with git)
