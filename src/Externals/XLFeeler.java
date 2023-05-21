@@ -1,5 +1,6 @@
 package Externals;
 
+import application.MainPageController;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.Iterator;
@@ -17,34 +18,29 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  */
 public class XLFeeler {
-
-	public static String fileName = "!";
-	public static String fileName2 = "!";
-
 	
-	// Java Program to Illustrate Reading
-	// Data to Excel File Using Apache POI
-	// Main driver method
+	MainPageController v = new MainPageController();
+
+	public final String XLDataFile = v.getCurrentPath();
+	public final String XLComparisonFile = "!";
+
 		public void read() {
 
 			// Try block to check for exceptions
 			try {
-
-				
 		
-				
 				// Reading file from local directory
-				FileInputStream file = new FileInputStream(fileName);
+				FileInputStream XLDataInput = new FileInputStream(XLDataFile);
 				
-				FileInputStream file2 = new FileInputStream(fileName2);
+				FileInputStream XLComparisonInput = new FileInputStream(XLComparisonFile);
 
 				// Create Workbook instance holding reference to
 				// .xlsx file
-				XSSFWorkbook workbook = new XSSFWorkbook(file);
+				XSSFWorkbook workbook = new XSSFWorkbook(XLDataFile);
 				
-				XSSFWorkbook wk2 = new XSSFWorkbook(file);
+				XSSFWorkbook wk2 = new XSSFWorkbook(XLDataFile);
 				
-				XSSFWorkbook wk3 = new XSSFWorkbook(file2);
+				XSSFWorkbook wk3 = new XSSFWorkbook(XLComparisonFile);
 				
 				if (workbook.equals(wk2)) {
 					System.out.println("true");
@@ -102,8 +98,11 @@ public class XLFeeler {
 				}
 
 				// Closing file output streams
-				file.close();
+				XLDataInput.close();
 				workbook.close();
+				XLComparisonInput.close();
+				wk2.close();
+				wk3.close();
 			}
 
 			// Catch block to handle exceptions

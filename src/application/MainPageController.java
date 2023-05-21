@@ -1,5 +1,6 @@
 package application;
 
+import Externals.*;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,10 +15,9 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 
 public class MainPageController {
+	
 	private double runStatus;
 	
-	@FXML
-	private Button buttonExit;
 	@FXML
 	private Button buttonResetTheThing;
 	
@@ -41,9 +41,8 @@ public class MainPageController {
 	private ComboBox pathBox;
 	
 	
-	@FXML
-	public void exit() {
-		// close the session
+	public void initialize() throws FileNotFoundException {
+		fillComboBoxFromFile(pathBox);
 	}
 	
 	@FXML
@@ -53,7 +52,8 @@ public class MainPageController {
 	
 	@FXML
 	public void run() {
-		//runs the thing idk
+		XLFeeler Feeler = new XLFeeler();
+		Feeler.read();
 	}
 	
 	@FXML
@@ -62,8 +62,11 @@ public class MainPageController {
 		try {
 			FileWriter fw = new FileWriter("paths.txt", true);
 			BufferedWriter bw = new BufferedWriter(fw);
-			bw.write("C://PATH" + "\n"); //should be the text in the path text field		
+			bw.write(pathTextField.getText() + "\n"); //should be the text in the path text field		
 			bw.close();
+			pathTextField.clear();
+			
+			fillComboBoxFromFile(pathBox); 
 		} catch (IOException e) {
 			System.out.println("Unable to write to file");
 			e.printStackTrace();
@@ -96,7 +99,8 @@ public class MainPageController {
 	 * @param natComboBox
 	 * @throws FileNotFoundException
 	 */
-	public void fillComboBoxFromFile(ComboBox natComboBox) throws FileNotFoundException {
+	@FXML
+	public static void fillComboBoxFromFile(ComboBox natComboBox) throws FileNotFoundException {
 		
 		Scanner fileIn = new Scanner(new File("paths.txt"));
 		
@@ -108,7 +112,17 @@ public class MainPageController {
 	}
 	
 	
+	public String getInputPathText() {
+		return pathTextField.getText();
+	}
+	
+	public String getCurrentPath() {
+		return pathBox.getValue().toString();
+	}
 	
 	
-	
+	@SuppressWarnings("rawtypes")
+	public ComboBox getPathBox() {
+		return pathBox;
+	}
 }

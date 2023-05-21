@@ -15,10 +15,10 @@ import java.io.IOException;
  */
 public class FeelerUtils {
 	
-	public static final int SLEEP_TIME = 10;
+	public static final int STANDARD_SLEEP_TIME = 10;
 	
 	public static void sleep() throws InterruptedException {
-		Thread.sleep(SLEEP_TIME);
+		Thread.sleep(STANDARD_SLEEP_TIME);
 	}
 	
 	
@@ -284,7 +284,7 @@ public class FeelerUtils {
 	
 //	    public static void main(String[] args) throws IOException, AWTException, InterruptedException {
 //	    	Robot robot = new Robot();
-//	        robot.setAutoDelay(SLEEP_TIME);
+//	        robot.setAutoDelay(STANDARD_SLEEP_TIME);
 //	    	
 //	    	String command = "notepad.exe";
 //	        Runtime run = Runtime.getRuntime();
